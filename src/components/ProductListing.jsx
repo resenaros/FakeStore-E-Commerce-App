@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductListing = () => {
   const [products, setProducts] = useState([]);
@@ -40,9 +41,16 @@ const ProductListing = () => {
         {products.map((product, id) => (
           <Col key={id}>
             <Card>
-              <Card.Img width={300} src={product.image} alt={product.title} />
+              <Card.Img
+                className="d-block mx-auto"
+                style={{ width: "100px" }}
+                src={product.image}
+                alt={product.title}
+              />
               <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
+                <Card.Title>
+                  <Link to={`/products/${product.id}`}>{product.title}</Link>
+                </Card.Title>
                 <Card.Text>${product.price}</Card.Text>
               </Card.Body>
             </Card>
