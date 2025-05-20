@@ -1,12 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ProductListing from "./components/ProductListing";
 
 function App() {
   return (
-    <>
-      <h1>Hello React</h1>
-      <ProductListing />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/products" element={<ProductListing />} />
+      </Routes>
+    </Router>
   );
 }
 
