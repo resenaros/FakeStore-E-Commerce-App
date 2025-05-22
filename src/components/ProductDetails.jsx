@@ -33,7 +33,7 @@ const ProductDetails = () => {
       </div>
     );
 
-  if (!product) return null; // Prevents rendering before product is loaded
+  if (!product) return <p>No product found.</p>; // Prevents rendering before product is loaded
 
   return (
     <Container>
