@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -48,10 +49,16 @@ const ProductListing = () => {
                 alt={product.title}
               />
               <Card.Body>
-                <Card.Title>
-                  <Link to={`/products/${product.id}`}>{product.title}</Link>
-                </Card.Title>
+                <Card.Title>{product.title}</Card.Title>
                 <Card.Text>${product.price}</Card.Text>
+                <Link to={`/products/${product.id}`}>
+                  <Button
+                    variant="primary"
+                    className="text-warning border border-3 border-secondary rounded"
+                  >
+                    View Product Details
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
