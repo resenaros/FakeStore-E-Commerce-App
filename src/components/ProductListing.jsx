@@ -36,29 +36,54 @@ const ProductListing = () => {
     );
 
   return (
-    <Container>
-      ProductListing
-      <Row>
+    <Container className="mt-4">
+      <h2 className="mb-4">Product Listing</h2>
+      <Row className="g-4">
         {products.map((product, id) => (
-          <Col key={id}>
-            <Card>
+          <Col
+            key={id}
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            className="d-flex align-items-stretch"
+          >
+            <Card className="w-100 h-100 d-flex flex-column">
               <Card.Img
-                className="d-block mx-auto"
-                style={{ width: "100px" }}
+                className="d-block mx-auto mt-3"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "contain",
+                }}
                 src={product.image}
                 alt={product.title}
               />
-              <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
-                <Card.Text>${product.price}</Card.Text>
-                <Link to={`/products/${product.id}`}>
-                  <Button
-                    variant="primary"
-                    className="text-warning border border-3 border-secondary rounded"
+              <Card.Body classname="d-flex flex-column justify-content-between">
+                <div>
+                  <Card.Title
+                    className="fs-6 text-truncate"
+                    style={{ maxHeight: "3em", overflow: "hidden" }}
                   >
-                    View Product Details
-                  </Button>
-                </Link>
+                    {product.title}
+                  </Card.Title>
+                  <Card.Text className="fs-6 mb-2">${product.price}</Card.Text>
+                </div>
+                <div className="mx-auto mt-auto d-flex flex-column justify-content-center align-items-center">
+                  <Link to={`/products/${product.id}`}>
+                    <Button
+                      variant="primary"
+                      className="mb-2 w-100 text-warning border border-3 border-secondary rounded"
+                    >
+                      View Product Details
+                    </Button>
+                  </Link>
+                  <Link to={`/edit-product/${product.id}`}>
+                    <Button variant="warning" size="sm" className="w-100">
+                      Edit
+                    </Button>
+                  </Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>

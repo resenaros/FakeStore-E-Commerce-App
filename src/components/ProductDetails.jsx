@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [deleted, setDeleted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = () => setShowModal(false);
 
   const deleteProduct = () => {
     axios
       .delete(`https://fakestoreapi.com/products/${id}`)
       .then((response) => {
         setDeleted(true);
+        setShowModal(false);
+        setTimeout(() => navigate("/products"), 1500);
         console.log(`Product ${id} deleted successfully`);
       })
       .catch((error) => {
         setError("Failed to delete product...");
+        setShowModal(false);
         console.error("Error deleting product", error);
       });
   };
+
+  const handleCloseModal = () => setShowModal(false);
 
   useEffect(() => {
     axios
@@ -73,21 +83,44 @@ const ProductDetails = () => {
               </Card.Text>
               <Card.Text className="text-muted">{product.category}</Card.Text>
               <div className="mt-auto d-flex justify-content-center">
+                {/* Non-functional/decoration-Button to trigger add to cart action */}
                 <Button size="sm" variant="primary" className="mx-2">
                   Add to Cart
                 </Button>
+                <Link to={`/edit-product/${id}`}>
+                  <Button size="sm" variant="warning" className="mx-2">
+                    Edit
+                  </Button>
+                </Link>
+                {/*Non-functional/decoration-Button to trigger delete confirmation modal */}
+                {/* Button to trigger delete confirmation modal */}
                 <Button
-                  onClick={deleteProduct}
+                  onClick={() => setShowModal(true)}
                   size="sm"
                   variant="outline-danger"
                 >
-                  Remove from Cart
+                  Delete Product
                 </Button>
               </div>
             </Card.Body>
           </Card>
         </Col>
       </Row>
+      {/* Modal for delete confirmation */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this product?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={deleteProduct}>
+            Yes, Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
