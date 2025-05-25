@@ -66,29 +66,54 @@ const ProductDetails = () => {
   if (!product) return <p>No product found.</p>; // Prevents rendering before product is loaded
 
   return (
-    <Container>
-      <Row>
-        <Col key={id} className="mb-3">
-          <Card className="h-100 w-50 mx-auto ">
+    <Container classname="mt-4">
+      <h2 className="my-4 text-center">Product Details</h2>
+      <Row classname="justify-content-center">
+        <Col key={id} className="xs={12} sm={8} md={6} lg={4}">
+          <Card className="h-100 mx-auto d-flex flex-column">
             <Card.Img
-              className="d-block mx-auto w-25"
+              className="d-block mx-auto mt-4"
+              style={{
+                width: "120px",
+                height: "120px",
+                objectFit: "contain",
+              }}
               src={product.image}
               alt={product.title}
             />
-            <Card.Body className="d-flex flex-column">
-              <Card.Title className="fs-6">{product.title}</Card.Title>
-              <Card.Text className="mb-1">${product.price}</Card.Text>
-              <Card.Text className="text-truncate">
-                {product.description}
-              </Card.Text>
-              <Card.Text className="text-muted">{product.category}</Card.Text>
-              <div className="mt-auto d-flex justify-content-center">
+            <Card.Body className="d-flex flex-column justify-content-between">
+              <div>
+                <Card.Title
+                  className="fs-5 w-100 text-center"
+                  style={{
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  {product.title}
+                </Card.Title>
+                <Card.Text className="fs-5 text-center mb-3">
+                  ${product.price}
+                </Card.Text>
+                <Card.Text className="mb-2 text-center fs-5">
+                  {product.description}
+                </Card.Text>
+                <Card.Text className="text-muted text-center mb-2">
+                  {product.category}
+                </Card.Text>
+              </div>
+              <div className="mt-auto d-flex flex-column align-items-center justify-content-center gap-2">
                 {/* Non-functional/decoration-Button to trigger add to cart action */}
-                <Button size="sm" variant="primary" className="mx-2">
+                <Button
+                  size="sm"
+                  variant="primary"
+                  className="text-warning border border-3 border-secondary rounded w-25"
+                >
                   Add to Cart
                 </Button>
-                <Link to={`/edit-product/${id}`}>
-                  <Button size="sm" variant="warning" className="mx-2">
+                <Link to={`/edit-product/${id}`} className="w-25">
+                  <Button size="sm" variant="warning" className="w-100">
                     Edit
                   </Button>
                 </Link>
@@ -98,6 +123,7 @@ const ProductDetails = () => {
                   onClick={() => setShowModal(true)}
                   size="sm"
                   variant="outline-danger"
+                  className="w-25"
                 >
                   Delete Product
                 </Button>

@@ -59,30 +59,43 @@ const ProductListing = () => {
                 src={product.image}
                 alt={product.title}
               />
-              <Card.Body classname="d-flex flex-column justify-content-between">
-                <div>
+              <Card.Body className="d-flex flex-column justify-content-between px-2">
+                {/* Middle zone: Title */}
+                <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                   <Card.Title
-                    className="fs-6 text-truncate"
-                    style={{ maxHeight: "3em", overflow: "hidden" }}
+                    className="fs-6 w-100 text-center"
+                    style={{
+                      whiteSpace: "normal",
+                      wordBreak: "break-word",
+                    }}
                   >
                     {product.title}
                   </Card.Title>
-                  <Card.Text className="fs-6 mb-2">${product.price}</Card.Text>
                 </div>
-                <div className="mx-auto mt-auto d-flex flex-column justify-content-center align-items-center">
-                  <Link to={`/products/${product.id}`}>
-                    <Button
-                      variant="primary"
-                      className="mb-2 w-100 text-warning border border-3 border-secondary rounded"
-                    >
-                      View Product Details
-                    </Button>
-                  </Link>
-                  <Link to={`/edit-product/${product.id}`}>
-                    <Button variant="warning" size="sm" className="w-100">
-                      Edit
-                    </Button>
-                  </Link>
+                {/* Bottom zone: Price and Buttons */}
+                <div className="mt-2">
+                  <Card.Text
+                    className="fs-6 mb-2 text-center"
+                    style={{ marginBottom: "0.5rem" }}
+                  >
+                    ${product.price}
+                  </Card.Text>
+                  <div className="d-flex flex-column align-items-center gap-2">
+                    <Link to={`/products/${product.id}`} className="w-100">
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        className="w-100 text-warning border border-3 border-secondary rounded"
+                      >
+                        View Product Details
+                      </Button>
+                    </Link>
+                    <Link to={`/edit-product/${product.id}`} className="w-100">
+                      <Button variant="warning" size="sm" className="w-100">
+                        Edit
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </Card.Body>
             </Card>

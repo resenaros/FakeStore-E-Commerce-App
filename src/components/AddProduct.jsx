@@ -45,7 +45,7 @@ const AddProduct = () => {
 
   return (
     <Container className="mt-5">
-      <h2 className="mt-5">Add Product</h2>
+      <h2 className="my-4">Add Product</h2>
       {submitted && (
         <Alert variant="success" dismissible>
           {product.title} created successfully!
@@ -56,76 +56,85 @@ const AddProduct = () => {
           {error}
         </Alert>
       )}
-      <Form onSubmit={handleSubmit}>
-        {/*Title*/}
-        <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter product title"
-            name="title"
-            value={formdata.title}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+      <div
+        className="border border-2 bg-white rounded p-4 text-center w-100"
+        style={{ margin: "0 auto" }}
+      >
+        <Form onSubmit={handleSubmit}>
+          {/*Title*/}
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter product title"
+              name="title"
+              value={formdata.title}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        {/*Description*/}
-        <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter product description"
-            name="description"
-            value={formdata.description}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          {/*Description*/}
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter product description"
+              name="description"
+              value={formdata.description}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        {/*Price*/}
-        <Form.Group className="mb-3">
-          <Form.Label>Price</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter product price"
-            name="price"
-            value={formdata.price}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          {/*Price*/}
+          <Form.Group className="mb-3">
+            <Form.Label>Price</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Enter product price"
+              name="price"
+              value={formdata.price}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        {/*Category*/}
-        <Form.Group className="mb-3">
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter product category"
-            name="category"
-            value={formdata.category}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          {/*Category*/}
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter product category"
+              name="category"
+              value={formdata.category}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        {/*Image*/}
-        <Form.Group className="mb-3">
-          <Form.Label>Image</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter product image URL"
-            name="image"
-            value={formdata.image}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+          {/*Image*/}
+          <Form.Group className="mb-3">
+            <Form.Label>Image</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter product image URL"
+              name="image"
+              value={formdata.image}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          {/*Submit Button*/}
+          <Button
+            variant="primary"
+            className="text-warning border border-3 border-secondary rounded"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Form>
+      </div>
     </Container>
   );
 };
