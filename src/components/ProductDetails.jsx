@@ -19,12 +19,10 @@ const ProductDetails = () => {
   const [deleted, setDeleted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = () => setShowModal(false);
-
   const deleteProduct = () => {
     axios
       .delete(`https://fakestoreapi.com/products/${id}`)
-      .then((response) => {
+      .then(() => {
         setDeleted(true);
         setShowModal(false);
         setTimeout(() => navigate("/products"), 1500);
@@ -67,11 +65,11 @@ const ProductDetails = () => {
   if (!product) return <p>No product found.</p>; // Prevents rendering before product is loaded
 
   return (
-    <Container classname="mt-4">
+    <Container className="mt-4">
       <h2 className="my-4 text-center">Product Details</h2>
       <FakeStoreApiNotice />
       <Row classname="justify-content-center">
-        <Col key={id} className="xs={12} sm={8} md={6} lg={4}">
+        <Col key={id}>
           <Card className="h-100 mx-auto d-flex flex-column">
             <Card.Img
               className="d-block mx-auto mt-4"
