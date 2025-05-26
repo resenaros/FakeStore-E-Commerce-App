@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
+import FakeStoreApiNotice from "./FakeStoreApiNotice";
 
 const AddProduct = () => {
   const [product, setProduct] = useState();
@@ -46,6 +47,7 @@ const AddProduct = () => {
   return (
     <Container className="mt-5">
       <h2 className="my-4">Add Product</h2>
+      <FakeStoreApiNotice />
       {submitted && (
         <Alert variant="success" dismissible>
           {product.title} created successfully!

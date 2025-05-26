@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import FakeStoreApiNotice from "./FakeStoreApiNotice";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -65,6 +66,7 @@ const EditProduct = () => {
   return (
     <Container className="mt-5">
       <h2 className="my-4">EditProduct</h2>
+      <FakeStoreApiNotice />
       {submitted && (
         <Alert variant="success" dismissible>
           {formdata.title} updated successfully!

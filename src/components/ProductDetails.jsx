@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import FakeStoreApiNotice from "./FakeStoreApiNotice"; // Assuming this is a component for API notice
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -68,6 +69,7 @@ const ProductDetails = () => {
   return (
     <Container classname="mt-4">
       <h2 className="my-4 text-center">Product Details</h2>
+      <FakeStoreApiNotice />
       <Row classname="justify-content-center">
         <Col key={id} className="xs={12} sm={8} md={6} lg={4}">
           <Card className="h-100 mx-auto d-flex flex-column">
